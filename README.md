@@ -6,6 +6,6 @@ NewStart
 This project was created by [J. Spencer Hopkins](https://github.com/jspencerhopkins) and
 [Peter Ortiz](https://github.com/Peterortiz82).
 
-See the app live [NewStart](http://new-start.herokuapp.com/)
+See the app live [NewStart](http://anewstart.herokuapp.com/)
 
 
