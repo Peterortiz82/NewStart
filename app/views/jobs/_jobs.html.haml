@@ -1,0 +1,42 @@
+- @jobs.each do |job|
+  = link_to image_tag(job.startup.thumb_url), "#{job.startup.url}", target: "_blank", class: "thumbnail"
+  %ul.startup-list
+    %li
+      %h2.h2-li
+        = job.startup.name
+        %span.title-h2
+          (#{job.job_type.titleize})
+    %li
+      %strong Job title:
+      = job.title.truncate_words(10)
+    - if job.salary_max && job.salary_min != nil && job.salary_max && job.salary_min != 0
+      %li
+        %strong> Salary:
+        $#{number_with_delimiter(job.salary_min, delimiter: ',')} - $#{number_with_delimiter(job.salary_max, delimiter: ',')}
+    - else
+      %li
+        %strong> Salary:
+        N/A
+    %li
+      = link_to "Details", job.al_url
+      |
+      \#{link_to "Website", job.startup.url} |
+      - if current_user
+        - if current_user.jobs.exists?(al_job_id: job.al_job_id)
+          %span
+            %i.fa.fa-star
+        - else
+          = form_tag(favorites_path) do
+            = hidden_field_tag(:id, job.id)
+            = hidden_field_tag(:search, params[:search])
+            = button_tag(type: 'submit', class: "btn btn-default") do
+              %span
+                %i.fa.fa-thumb-tack
+      - else
+        = form_tag(favorites_path) do
+          = hidden_field_tag(:id, job.id)
+          = hidden_field_tag(:search, params[:search])
+          = button_tag(type: 'submit', class: "btn btn-default") do
+            %span
+              %i.fa.fa-thumb-tack
+  %hr/

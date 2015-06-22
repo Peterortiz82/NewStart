@@ -1,0 +1,17 @@
+%script{:src => "//maps.google.com/maps/api/js?v=3.13&sensor=false&libraries=geometry", :type => "text/javascript"}
+%script{:src => "//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js", :type => "text/javascript"}
+.container
+  .panel-body.col-md-4.pull-right
+    = render 'maps'
+    - if @zillow
+      = render 'zillow_data'
+    - else
+      = render 'no_zillow_data'
+  .h1-title
+    %h1
+      Startups in #{@location.display_name}
+  .col-md-8
+    - if flash[:notice]
+      .notice= flash[:notice]
+    = render 'jobs'
+    = will_paginate @jobs, renderer: BootstrapPagination::Rails

@@ -1,0 +1,27 @@
+%nav.navbar.navbar-default.navbar-static-top
+  .container
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle.collapsed{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      .navbar-brand
+        %i.fa.fa-leaf
+        = link_to 'NewStart', root_path
+    / Collect the nav links, forms, and other content for toggling
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          %li= link_to current_user.email, edit_user_registration_path
+          %li
+            = link_to favorites_path do
+              %span.glyphicon.glyphicon-star
+              Favorites
+          %li= link_to "Sign Out", destroy_user_session_path, method: :delete
+        - else
+          %li= link_to 'Sign Up', new_user_registration_path
+          %li= link_to 'Sign In', user_session_path
+    / /.navbar-collapse
+  / /.container-fluid

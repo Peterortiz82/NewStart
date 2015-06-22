@@ -1,0 +1,13 @@
+#map.map_container
+  :javascript
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {maxZoom: 10}, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers(#{raw @hash.to_json});
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+    });
+= form_tag jobs_path, :method => :get do
+  .pull-right
+    .input-group.input-group-md
+      = text_field_tag :search, params[:search].downcase, placeholder: "search by city", class: "form-control"
+      %span.input-group-btn= submit_tag "Search", name: nil, class: "btn btn-default"

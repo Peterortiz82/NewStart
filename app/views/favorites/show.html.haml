@@ -1,0 +1,36 @@
+.container
+  .favorite-title
+    %h1 Favorites
+  - @favorites.each do |fav|
+    = link_to image_tag(fav.startup.thumb_url), "#{fav.startup.url}", target: "_blank", class: "thumbnail"
+    %ul.startup-list
+      %li
+        %h2.h2-li
+          = fav.startup.name
+          %span.title-h2
+            (#{fav.location.display_name}/#{fav.job_type.titleize})
+      %li
+        %strong Job title:
+        = fav.title.truncate_words(10)
+      - if fav.salary_max && fav.salary_min != nil && fav.salary_max && fav.salary_min != 0
+        %li
+          %strong> Salary:
+          $#{number_with_delimiter(fav.salary_min, delimiter: ',')} - $#{number_with_delimiter(fav.salary_max, delimiter: ',')}
+      - else
+        %li
+          %strong> Salary:
+          N/A
+      %li
+        = link_to "Details", fav.al_url
+        |
+        \#{link_to "Website", fav.startup.url, target: "_blank"} |
+        \#{form_tag(favorites_path, method: 'delete') do}
+          = hidden_field_tag(:id, fav.id)
+          = button_tag(type: 'Delete', class: "btn btn-sm btn-primary") do
+            %span
+              %i.fa.fa-times
+            Remove
+    %hr/
+  .back
+    = link_to "Back", url_for(:back), class: "btn btn-default"
+  = will_paginate @favorites, renderer: BootstrapPagination::Rails

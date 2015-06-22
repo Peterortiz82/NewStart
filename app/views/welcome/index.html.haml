@@ -1,0 +1,46 @@
+.jumbotron
+  #overlay
+    %h1{:style => "text-align:center;"} Ready for a new start?
+    %p{:style => "text-align:center;"} Search thousands of startups from all across the U.S.
+    = form_tag jobs_path, :method => :get do
+      .col-md-6.col-md-offset-3
+        .input-group.input-group-lg
+          = text_field_tag :search, params[:search], placeholder: "search by city", class: "form-control"
+          %span.input-group-btn= submit_tag "Search", name: nil, class: "btn btn-default"
+#about
+  .container.homepage
+    %h2 ABOUT NEWSTART
+    %hr
+      %p
+        Looking for a spark in your career?  Want to move to a fresh scene?
+        We developed
+        %span.new-start NewStart
+        to help you locate a fun position at a young company in a city that best suits your lifestyle.
+        
+        Start by searching for a city that peaks your interest.  From there you will be presented with a list of the job opportunities that are available in that area.  Along side the job posting, you will find a map, economic  traffic information as well as characteristics of the city.
+        
+        We also offer the ability to create an account with us to save job postings that you are interested in.
+  #how-it-works
+    .container.homepage
+      %h2 HOW IT WORKS
+      %hr
+        .row
+          .col-md-4
+            %span.fa-stack.fa-4x
+              %i.fa.fa-circle.fa-stack-2x
+              %i.fa.fa-angellist.fa-stack-1x.fa-inverse
+            %h3 AngelList
+            %p The AngelList API allows the user to search startup jobs from all across the United States.
+          .col-md-4
+            %span.fa-stack.fa-4x
+              %i.fa.fa-circle.fa-stack-2x
+              %i.fa.fa-map-marker.fa-stack-1x.fa-inverse
+            %h3 Google Maps
+            %p By using the Google maps API our users are able to quickly visualize the location of the city they are searching.
+          .col-md-4
+            %span.fa-stack.fa-4x
+              %i.fa.fa-circle.fa-stack-2x
+              %i.fa.fa-bar-chart.fa-stack-1x.fa-inverse
+            %h3 City Data
+            %p The Zillow API allows the user to view a snapshot of economic, transportation and cultural data.
+      / /container

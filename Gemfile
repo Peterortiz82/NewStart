@@ -20,6 +20,7 @@ gem 'will_paginate'
 gem 'figaro'
 gem 'devise'
 gem 'will_paginate-bootstrap'
+gem 'haml-rails', '~> 0.9.0'
 
 
 group :production do

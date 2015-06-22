@@ -1,0 +1,39 @@
+#accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
+  .panel.panel-default
+    #headingOne.panel-heading{:role => "tab"}
+      %h4.panel-title
+        %a{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseOne"}
+          Economic  Transportation Info
+    #collapseOne.panel-collapse.collapse.in{"aria-labelledby" => "headingOne", :role => "tabpanel"}
+      %ul.list-group
+        %li
+          %strong Median Household income:
+          $#{number_with_delimiter(@zillow.med_house_income, delimiter: ',')}
+        %li.nat-avg{:style => "     font-size: .9em;"}
+          (National average $#{number_with_delimiter(@zillow.med_nat_house_income, delimiter: ',')})
+        %li
+          %strong Home Value Index:
+          $#{number_with_delimiter(@zillow.zillow_HVI, delimiter: ',')}
+        %li.nat-avg{:style => "     font-size: .9em;"}
+          (National average $#{number_with_delimiter(@zillow.zillow_nat_HVI, delimiter: ',')})
+        %li
+          %strong Average Commute Time:
+          About #{@zillow.avg_commute_time.round} minutes
+        %li.nat-avg{:style => "     font-size: .9em;"}
+          (National average About #{@zillow.avg_nat_commute_time.round} minutes)
+  .panel.panel-default
+    #headingTwo.panel-heading{:role => "tab"}
+      %h4.panel-title
+        %a.collapsed{"aria-controls" => "collapseTwo", "aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseTwo"}
+          City Characteristics
+    #collapseTwo.panel-collapse.collapse{"aria-labelledby" => "headingTwo", :role => "tabpanel"}
+      %ul.list-group
+        %li.culter
+          %strong Education:
+          = @zillow.education
+        %li.culter
+          %strong People  Culture:
+          = @zillow.people_culture
+        %li.culter
+          %strong Transportation:
+          = @zillow.transportation
